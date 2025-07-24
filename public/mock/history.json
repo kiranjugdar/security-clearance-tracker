@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Application Submitted",
+    "date": "2025-02-01T10:23:00Z",
+    "status": "completed",
+    "description": "Security officer has submitted Top Secret questionnaire"
+  },
+  {
+    "name": "Initiated",
+    "date": "2025-02-07T09:00:00Z",
+    "status": "in_progress",
+    "description": "Application assigned to security specialist"
+  },
+  {
+    "name": "Questionnaire Submitted",
+    "date": "2025-02-14T14:30:00Z",
+    "status": "completed",
+    "description": "Questionnaire reviewed by investigator"
+  }
+]

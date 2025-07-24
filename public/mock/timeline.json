@@ -1,0 +1,27 @@
+[
+  {
+    "status": "Application Submitted",
+    "avgDuration": 14,
+    "range": "12–16 days"
+  },
+  {
+    "status": "Initiated",
+    "avgDuration": 21,
+    "range": "19–23 days"
+  },
+  {
+    "status": "Questionnaire Submitted",
+    "avgDuration": 7,
+    "range": "5–9 days"
+  },
+  {
+    "status": "Review & Investigation",
+    "avgDuration": null,
+    "range": "Data not available"
+  },
+  {
+    "status": "Final Review",
+    "avgDuration": null,
+    "range": "Data not available"
+  }
+]
