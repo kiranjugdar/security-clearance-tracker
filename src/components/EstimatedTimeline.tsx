@@ -1,27 +1,35 @@
+// src/components/EstimatedTimeline.tsx
 import React from 'react';
 import { useSelector } from 'react-redux';
-import type { RootState } from '../store';
+import { RootState } from '../store';
 
 export const EstimatedTimeline: React.FC = () => {
-  const { timeline } = useSelector((state: RootState) => state.clearance);
+  const { timeline } = useSelector((s: RootState) => s.clearance);
 
   return (
-    <section className="p-4 bg-white shadow rounded mt-4">
-      <h2 className="text-xl font-semibold mb-2">Estimated Timeline</h2>
-      <table className="w-full text-left">
+    <section className="bg-white rounded-lg shadow p-6 mb-6 overflow-x-auto">
+      <h3 className="text-md font-semibold text-gray-900 mb-4">Estimated Timeline</h3>
+      <table className="min-w-full table-auto">
         <thead>
-          <tr className="border-b">
-            <th className="py-2">Status</th>
-            <th>Avg. Duration</th>
-            <th>Range</th>
+          <tr className="bg-gray-50">
+            {['Status', 'Avg. Duration', 'Range'].map((h) => (
+              <th
+                key={h}
+                className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase"
+              >
+                {h}
+              </th>
+            ))}
           </tr>
         </thead>
         <tbody>
-          {timeline.map(item => (
-            <tr key={item.status} className="border-b">
-              <td className="py-2">{item.status}</td>
-              <td>{item.avgDuration !== null ? `${item.avgDuration} days` : '—'}</td>
-              <td>{item.range}</td>
+          {timeline.map((row) => (
+            <tr key={row.status} className="even:bg-gray-50">
+              <td className="px-4 py-2 text-sm text-gray-800">{row.status}</td>
+              <td className="px-4 py-2 text-sm text-gray-800">
+                {row.avgDuration != null ? `${row.avgDuration} days` : '–'}
+              </td>
+              <td className="px-4 py-2 text-sm text-gray-800">{row.range}</td>
             </tr>
           ))}
         </tbody>

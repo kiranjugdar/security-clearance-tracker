@@ -3,10 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-     "dev": "next dev",
+    "dev": "next dev",
     "build": "next build",
     "export": "next export",
-    "start": "serve out",
+    "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
@@ -16,7 +16,8 @@
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "react-redux": "^9.2.0",
-    "redux": "^5.0.1"
+    "redux": "^5.0.1",
+    "serve": "^14.2.4"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
