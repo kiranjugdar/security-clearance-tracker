@@ -1,0 +1,27 @@
+[
+  {
+    "caseId": "SCT-2024-001",
+    "caseStatus": "In Progress",
+    "link": "/case/SCT-2024-001"
+  },
+  {
+    "caseId": "SCT-2024-002",
+    "caseStatus": "Under Review",
+    "link": "/case/SCT-2024-002"
+  },
+  {
+    "caseId": "SCT-2024-003",
+    "caseStatus": "Approved",
+    "link": "/case/SCT-2024-003"
+  },
+  {
+    "caseId": "SCT-2024-004",
+    "caseStatus": "Pending Documentation",
+    "link": "/case/SCT-2024-004"
+  },
+  {
+    "caseId": "SCT-2024-005",
+    "caseStatus": "Closed",
+    "link": "/case/SCT-2024-005"
+  }
+]

@@ -10,3 +10,9 @@ export interface TimelineItem {
   avgDuration: number | null;
   range: string;
 }
+
+export interface CaseHistoryItem {
+  caseId: string;
+  caseStatus: string;
+  link: string;
+}

@@ -7,7 +7,7 @@ export const StatusHistory: React.FC = () => {
   const { history } = useSelector((s: RootState) => s.clearance);
 
   return (
-    <section className="bg-white rounded-lg shadow p-6 mb-6">
+    <section className="bg-white rounded-lg shadow p-6 w-100">
       <h3 className="text-md font-semibold text-gray-900 mb-4">Status History</h3>
       <ul className="space-y-4">
         {history.map((item) => (

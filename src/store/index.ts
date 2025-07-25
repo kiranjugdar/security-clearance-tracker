@@ -1,11 +1,12 @@
 import { configureStore, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { StatusHistoryItem, TimelineItem } from '../types';
+import { StatusHistoryItem, CaseHistoryItem } from '../types';
 
 interface ClearanceState {
   progressStages: string[];
   currentStage: string;
   history: StatusHistoryItem[];
-  timeline: TimelineItem[];
+  caseHistory: CaseHistoryItem[];
+  selectedCaseId: string;
 }
 
 const initialState: ClearanceState = {
@@ -18,8 +19,54 @@ const initialState: ClearanceState = {
     'Completed'
   ],
   currentStage: 'Questionnaire Submitted',
-  history: [],
-  timeline: []
+  history: [
+    {
+      name: "Application Submitted",
+      date: "2025-02-01T10:23:00Z",
+      status: "completed",
+      description: "Security officer has submitted Top Secret questionnaire"
+    },
+    {
+      name: "Initiated",
+      date: "2025-02-07T09:00:00Z",
+      status: "in_progress",
+      description: "Application assigned to security specialist"
+    },
+    {
+      name: "Questionnaire Submitted",
+      date: "2025-02-14T14:30:00Z",
+      status: "completed",
+      description: "Questionnaire reviewed by investigator"
+    }
+  ],
+  caseHistory: [
+    {
+      caseId: "SCT-2024-001",
+      caseStatus: "In Progress",
+      link: "/case/SCT-2024-001"
+    },
+    {
+      caseId: "SCT-2024-002",
+      caseStatus: "Under Review",
+      link: "/case/SCT-2024-002"
+    },
+    {
+      caseId: "SCT-2024-003",
+      caseStatus: "Approved",
+      link: "/case/SCT-2024-003"
+    },
+    {
+      caseId: "SCT-2024-004",
+      caseStatus: "Pending Documentation",
+      link: "/case/SCT-2024-004"
+    },
+    {
+      caseId: "SCT-2024-005",
+      caseStatus: "Closed",
+      link: "/case/SCT-2024-005"
+    }
+  ],
+  selectedCaseId: 'SCT-2024-001'
 };
 
 const clearanceSlice = createSlice({
@@ -32,13 +79,16 @@ const clearanceSlice = createSlice({
     setHistory(state, action: PayloadAction<StatusHistoryItem[]>) {
       state.history = action.payload;
     },
-    setTimeline(state, action: PayloadAction<TimelineItem[]>) {
-      state.timeline = action.payload;
+    setCaseHistory(state, action: PayloadAction<CaseHistoryItem[]>) {
+      state.caseHistory = action.payload;
+    },
+    setSelectedCaseId(state, action: PayloadAction<string>) {
+      state.selectedCaseId = action.payload;
     }
   }
 });
 
-export const { setCurrentStage, setHistory, setTimeline } = clearanceSlice.actions;
+export const { setCurrentStage, setHistory, setCaseHistory, setSelectedCaseId } = clearanceSlice.actions;
 export const store = configureStore({ reducer: { clearance: clearanceSlice.reducer } });
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;

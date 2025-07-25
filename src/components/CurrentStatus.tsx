@@ -9,7 +9,7 @@ export const CurrentStatus: React.FC = () => {
   const currentRecord = [...history].reverse().find(h => h.name === currentStage);
 
   return (
-    <section className="bg-white rounded-lg shadow p-6 mb-6 max-w-4xl mx-auto">
+    <section className="bg-white rounded-lg shadow p-6 mb-6 max-w-2xl">
       <h2 className="text-lg font-semibold text-gray-900 mb-2">
         Current Status: {currentStage}
       </h2>
