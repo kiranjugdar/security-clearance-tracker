@@ -23,6 +23,7 @@
     "@types/react": "^19.1.8",
     "@types/react-dom": "^19",
     "autoprefixer": "^10.4.21",
+    "copy-webpack-plugin": "^11.0.0",
     "css-loader": "^6.8.1",
     "eslint": "^9.31.0",
     "file-loader": "^6.2.0",

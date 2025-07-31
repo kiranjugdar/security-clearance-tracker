@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = (env, argv) => {
   const isProduction = argv.mode === 'production';
@@ -48,19 +49,23 @@ module.exports = (env, argv) => {
           test: /\.(png|jpe?g|gif|svg)$/i,
           type: 'asset/resource',
         },
-        {
-          test: /\.json$/,
-          type: 'asset/resource',
-          generator: {
-            filename: 'mock/[name][ext]'
-          }
-        },
       ],
     },
     plugins: [
       new HtmlWebpackPlugin({
         template: './public/index.html',
         title: 'Security Clearance Tracker',
+      }),
+      new CopyWebpackPlugin({
+        patterns: [
+          {
+            from: 'public',
+            to: '.',
+            globOptions: {
+              ignore: ['**/index.html'], // Don't copy index.html since HtmlWebpackPlugin handles it
+            },
+          },
+        ],
       }),
       ...(isProduction
         ? [
