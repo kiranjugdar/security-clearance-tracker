@@ -1,15 +1,17 @@
-import '../styles/globals.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import type { AppProps } from 'next/app';
-import { Provider } from 'react-redux';
-import { store } from '../store';
-import { useEffect } from 'react';
-import { fetchHistory, fetchCaseHistory } from '../api/clearance';
-import { setHistory, setCaseHistory } from '../store';
+import React, { useEffect } from 'react';
+import { HeaderBar } from './components/HeaderBar';
+import { CaseSelector } from './components/CaseSelector';
+import { ClearanceProgressBar } from './components/ClearanceProgressBar';
+import { CurrentStatus } from './components/CurrentStatus';
+import { StatusHistory } from './components/StatusHistory';
+import { CaseHistory } from './components/CaseHistory';
+import { fetchHistory, fetchCaseHistory } from './api/clearance';
+import { setHistory, setCaseHistory } from './store';
+import { store } from './store';
 
-function MyApp({ Component, pageProps }: AppProps) {
+function App() {
   useEffect(() => {
-    // Client‑side fetch on mount with fallback data
+    // Client-side fetch on mount with fallback data
     fetchHistory()
       .then(data => store.dispatch(setHistory(data)))
       .catch(error => {
@@ -63,10 +65,23 @@ function MyApp({ Component, pageProps }: AppProps) {
   }, []);
 
   return (
-    <Provider store={store}>
-      <Component {...pageProps} />
-    </Provider>
+    <div className="min-h-screen bg-gray-100">
+      <HeaderBar />
+      <main className="p-6 max-w-6xl mx-auto">
+        <CaseSelector />
+        <ClearanceProgressBar />
+        <CurrentStatus />
+        <div className="row g-4">
+          <div className="col-lg-6 d-flex">
+            <StatusHistory />
+          </div>
+          <div className="col-lg-6 d-flex">
+            <CaseHistory />
+          </div>
+        </div>
+      </main>
+    </div>
   );
 }
 
-export default MyApp;
+export default App;

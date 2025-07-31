@@ -1,30 +1,32 @@
-FROM node:18-alpine AS builder
+# Use Node.js 18 Alpine for building
+FROM node:18-alpine AS build
+
+# Set working directory
 WORKDIR /app
+
+# Copy package files
+COPY package*.json ./
 
 # Install dependencies
-COPY package.json package-lock.json ./
 RUN npm ci
 
-# Copy source & build Next.js app
+# Copy source code
 COPY . .
+
+# Build the application
 RUN npm run build
 
-# 2️⃣ Runtime stage
-FROM node:18-alpine AS runner
-WORKDIR /app
+# Use nginx to serve the built application
+FROM nginx:alpine
 
-# Copy necessary artifacts
-COPY --from=builder /app/package.json ./package.json
-COPY --from=builder /app/package-lock.json ./package-lock.json
-COPY --from=builder /app/node_modules ./node_modules
-COPY --from=builder /app/.next ./.next
-COPY --from=builder /app/public ./public
+# Copy built files to nginx
+COPY --from=build /app/dist /usr/share/nginx/html
 
-# Production mode
-ENV NODE_ENV=production
+# Copy nginx configuration
+COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-# Expose Next.js default port
-EXPOSE 3000
+# Expose port
+EXPOSE 80
 
-# Start Next.js on all network interfaces
-CMD ["npx", "next", "start", "-p", "3000", "-H", "0.0.0.0"]
+# Start nginx
+CMD ["nginx", "-g", "daemon off;"]
